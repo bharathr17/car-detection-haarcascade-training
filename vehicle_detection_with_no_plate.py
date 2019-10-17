@@ -4,8 +4,8 @@ import cv2
 print(cv2.__version__)
 
 #cascade_src = 'cars.xml'
-cascade_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/classifier/cascade.xml'
-cascade_src_no_plate= 'E:/PROJECT ALL/kaggle/project/car number plate detection haarcascade training raju/classifier/cascade.xml'
+cascade_src = 'D:/PROJECTS/Python/car-detection-haarcascade-training/classifier/cascade.xml'
+cascade_src_no_plate= 'D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/classifier/cascade.xml'
 #cascade_src_no_plate='E:/PROJECT ALL/kaggle/project/haarcascade_licence_plate_rus_16stages.xml'
 #cascade_src_no_plate='E:/PROJECT ALL/kaggle/project/haarcascade_russian_plate_number.xml'
 #cascade_src = 'numberPlate.xml'
@@ -13,7 +13,7 @@ cascade_src_no_plate= 'E:/PROJECT ALL/kaggle/project/car number plate detection 
 #video_src = 'dataset/video2.avi'
 #video_src = 'dataset/video3.avi'
 video_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/dataset/VID_20191002_095248.avi'
-video_src = 'E:/PROJECT ALL/kaggle/project/car video/VID_20191002_095248.mp4'
+video_src = 'D:/PROJECTS/Python/car video/VID_20191002_095248.mp4'
 
 cap = cv2.VideoCapture(video_src)
 car_cascade = cv2.CascadeClassifier(cascade_src)
