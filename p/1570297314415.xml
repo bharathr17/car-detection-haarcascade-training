@@ -1,0 +1,26 @@
+<annotation>
+	<folder>p</folder>
+	<filename>1570297314415.jpg</filename>
+	<path>E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\p\1570297314415.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>265</width>
+		<height>198</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>LP</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>177</xmin>
+			<ymin>155</ymin>
+			<xmax>214</xmax>
+			<ymax>177</ymax>
+		</bndbox>
+	</object>
+</annotation>
