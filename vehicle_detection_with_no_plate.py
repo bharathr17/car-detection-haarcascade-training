@@ -14,8 +14,8 @@ cascade_src_no_plate= 'E:/PROJECT ALL/kaggle/project/car number plate detection 
 #video_src = 'dataset/video2.avi'
 #video_src = 'dataset/video3.avi'
 video_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/dataset/VID_20191002_095248.avi'
-video_src = 'E:/PROJECT ALL/kaggle/project/car video/VID (7).mp4' #laptop
-outputpath='E:/PROJECT ALL/kaggle/project/found1/'
+video_src = 'E:/PROJECT ALL/kaggle/project/car video/VID (9).mp4' #laptop
+outputpath='E:/PROJECT ALL/kaggle/project/found2/'
 
 cap = cv2.VideoCapture(video_src)
 car_cascade = cv2.CascadeClassifier(cascade_src)
@@ -46,8 +46,9 @@ while True:
     
     plates = no_plate_cascade.detectMultiScale(roi_gray)
     for (ex,ey,ew,eh) in plates:
-        cv2.rectangle(img,(x1+ex,y1+ey),(x1+ex+ew,y1+ey+eh),(0,255,0),2)
         crop_no_plate=img[y1+ey:y1+ey+eh, x1+ex:x1+ex+ew]
+#        cv2.rectangle(img,(x1+ex,y1+ey),(x1+ex+ew,y1+ey+eh),(0,255,0),2)
+        
         file_output_path = os.path.join(outputpath , "found-"+str(count)+'.jpg')
         directory = os.path.dirname(file_output_path)
         try:
