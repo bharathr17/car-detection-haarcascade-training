@@ -3,9 +3,14 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import os
 
+ 
 #img = cv.imread('C:/Users/Raju/Desktop/15704dsf73130667.jpg',0)
 inputpath="E:/PROJECT ALL/kaggle/project/found1/"
 outputpath="E:/PROJECT ALL/kaggle/project/found1/crop/"
+ 
+#inputpath="D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/p/"
+#outputpath="D:/PROJECTS/Python/ruff/"
+ 
 
 count=0
 
@@ -20,10 +25,8 @@ for file in os.listdir(inputpath):
  
         
         
-        
-        
         edges = cv.Canny(img,100,200)
-#        %varexp --imshow edges
+ 
 #        edges1 = cv.Canny(edges,100,200)
         x,y=edges.shape
          
@@ -34,8 +37,7 @@ for file in os.listdir(inputpath):
                 print(edges[row,clm])
                 totalrow[row]+=edges[row,clm]
                 totalclm[clm]+=edges[row,clm]
-                
-#        %varexp --plot totalclm
+ 
          
         
         mid=int(x/2)
@@ -119,10 +121,10 @@ for file in os.listdir(inputpath):
     
     
 
-#print(edges[3,4])
-# 
+ 
 plt.subplot(121),plt.imshow(img,cmap = 'gray')
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
 plt.subplot(122),plt.imshow(edges,cmap = 'gray')
 plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
 plt.show()
+ 
