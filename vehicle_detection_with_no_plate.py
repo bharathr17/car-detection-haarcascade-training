@@ -15,7 +15,7 @@ cascade_src_no_plate= 'D:/PROJECTS/Python/car-number-plate-detection-haarcascade
 #video_src = 'dataset/video3.avi'
 video_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/dataset/VID_20191002_095248.avi'
 video_src = 'D:/PROJECTS/Python/car video/VID_20191002_095248.mp4'
-outputpath = 'D:/PROJECTS/Python/car video/plate/'
+outputpath = 'D:/PROJECTS/Python/car video/plate1/'
 
 cap = cv2.VideoCapture(video_src)
 car_cascade = cv2.CascadeClassifier(cascade_src)
