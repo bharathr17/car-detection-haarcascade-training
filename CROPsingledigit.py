@@ -1,10 +1,11 @@
 import numpy as np
-import cv2 as cv
+import cv2 as cv2
 from matplotlib import pyplot as plt
 import os
 
-img = cv.imread('C:/Users/Raju/Desktop/15704dsf73130667.jpg',0)
-img = cv.imread('D:/PROJECTS/Python/ruff/-4.jpg',0)
+
+#img = cv.imread('C:/Users/Raju/Desktop/15704dsf73130667.jpg',0)
+#img = cv.imread('D:/PROJECTS/Python/ruff/-4.jpg',0)
 
 #inputpath="D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/p/"
 #inputpath="D:/PROJECTS/Python/ruff2/"
@@ -15,85 +16,48 @@ outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/digit/"
 
 count=0
 
+def imshow_components(labels):
+    # Map component labels to hue val
+    label_hue = np.uint8(179*labels/np.max(labels))
+    blank_ch = 255*np.ones_like(label_hue)
+    labeled_img = cv2.merge([label_hue, blank_ch, blank_ch])
 
+    # cvt to BGR for display
+    labeled_img = cv2.cvtColor(labeled_img, cv2.COLOR_HSV2BGR)
+
+    # set bg label to black
+    labeled_img[label_hue==0] = 0
+
+#    cv2.imshow('labeled.png', labeled_img)
+#    cv2.waitKey()
+    return labeled_img
+    
+    
+    
 for file in os.listdir(inputpath):
     if file.endswith(".jpg"):
         print(file)
         
         
         
-        img = cv.imread(inputpath+file,0)
-        img = cv.imread('D:/PROJECTS/Python/ruff2/-44.jpg',0)
+        img = cv2.imread(inputpath+file,0)
+#        img = cv2.imread('E:/PROJECT ALL/kaggle/project/found7/crop/number/-588.jpg-378.jpg-279.jpg',0)
+        
+
+
+#        img = cv2.imread('eGaIy.jpg', 0)
+        img1 = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)[1]  # ensure binary
+        img=img1
+        ret, labels = cv2.connectedComponents(img)
+        
+
+        
+        crop_img=imshow_components(labels)
+#        crop_img=img[0:,0:]
         
         
         
-        edges = cv.Canny(img,100,200)
-#        edges1 = cv.Canny(edges,100,200)
-        x,y=edges.shape
-         
-#        totalrow = [0]*(x)
-        totalclm = [0]*(y)
-        for row in range(x):
-            for clm in range(y):
-                print(edges[row,clm])
-#                totalrow[row]+=edges[row,clm]
-                totalclm[clm]+=edges[row,clm]
-         
-        
-        mid=int(x/2)
-         
-       
-        x1Min=500
-       
-        x1Index=0
-        
-        for row in range(x):
- 
-            if(row < x  ):
-                print(row)
-                if( totalrow[row] < x1Min):
-                    x1Min= totalrow[row]
-                    x1Index=row
-                
- 
-         
-        
-        
-            
-        
-#        mid=int(y/2)
-#        y1=mid-1
-#        y2=mid+1
-#        y1Max=-1
-#        y2Max=-1
-#        y1Index=0
-#        y2Index=0
-#        for row in range(mid):
-#            if(y1 >= 0):
-#                if( totalclm[y1] > y1Max):
-#                    y1Max= totalclm[y1]
-#                    y1Index=y1
-#            if(y2 < y  ):
-#                print(y2)
-#                if( totalclm[y2] > y2Max):
-#                    y2Max= totalclm[y2]
-#                    y2Index=y2
-#                
-#            y1=y1-1
-#            y2=y2+1
-#            
-#         
-            
-            
-        print( str( x1Index)+", " )
-       
-         
-        
-        crop_img=img[x1Index:x,0:y]
-        
-        
-        
-        file_output_path = os.path.join(outputpath+'-'+str(count)+'.jpg')
+        file_output_path = os.path.join(outputpath+file+'-'+str(count)+'.jpg')
         directory = os.path.dirname(file_output_path)
         
         try:
@@ -102,7 +66,7 @@ for file in os.listdir(inputpath):
             os.mkdir(directory)
         
         
-        cv.imwrite(file_output_path, crop_img)
+        cv2.imwrite(file_output_path, crop_img)
         count+=1
 
 

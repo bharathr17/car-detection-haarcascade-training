@@ -34,13 +34,85 @@ for file in os.listdir(inputpath):
         x,y=edges.shape
          
         totalrow = [0]*(x)
+        totalrowchange = [0]*(x)
         totalclm = [0]*(y)
+        totalclmchange = [0]*(y)
+         
+        
         for row in range(x):
             for clm in range(y):
                 print(edges[row,clm])
                 totalrow[row]+=edges[row,clm]
                 totalclm[clm]+=edges[row,clm]
          
+        
+        for i in range(y-1):
+            totalclmchange[i]=abs(totalclm[i]-totalclm[i+1])
+            
+            
+        for i in range(x-1):
+            totalrowchange[i]=abs(totalrow[i]-totalrow[i+1])
+                
+
+        elementCount=0
+        range1=[]
+        i=0
+        while( i <y-1):
+
+            i1=i
+            while((totalclmchange[i]<1)and( i <y-1)):
+                i+=1
+            if((i-i1)>5):
+                range1.append((i1,i))
+            
+            i+=1;
+            
+        range1.sort()
+        
+        ll=len(range1)
+        if(ll==0):
+             range1.append((0,0))
+             range1.append((y,y))
+        elif(ll==1):
+            if(range1[0][0]<(y/2)):
+                range1.append((0,0))
+            else:
+                range1.append((y,y))
+                
+        ll=len(range1)
+        range1.sort()  
+        
+        
+        
+        
+        
+        
+        
+        elementCount2=0
+        range2=[]
+        i=x-1
+      
+        while( i >0):
+            print(totalrowchange[i])
+            i1=i
+            while((totalrowchange[i]<20)and( i >0)):
+                i-=1
+            if(abs(i-i1)>3):
+                range2.append((i,i1))
+                i=-10
+            
+            i-=1;
+            
+        range2.sort()
+        
+        
+        
+        if(len(range2)>0):
+            img=img[int((range2[0][0]+range2[0][1])/2):x,range1[0][1]:range1[ll-1][0]]
+        else:
+            img=img[int(x/2):x,range1[0][1]:range1[ll-1][0]]
+            
+        x,y=img.shape
         
         mid=int(x/2)
          
@@ -91,11 +163,12 @@ for file in os.listdir(inputpath):
        
          
         
-        crop_img=img[x1Index:x,0:y]
+#        crop_img=img[x1Index:x,0:y]
+        crop_img=img
         
         
         
-        file_output_path = os.path.join(outputpath+'-'+str(count)+'.jpg')
+        file_output_path = os.path.join(outputpath+file+'-'+str(count)+'.jpg')
         directory = os.path.dirname(file_output_path)
         
         try:
@@ -103,8 +176,9 @@ for file in os.listdir(inputpath):
         except:
             os.mkdir(directory)
         
-        
-        cv.imwrite(file_output_path, crop_img)
+        hh,ww=crop_img.shape
+        if(ww>(hh*4)):
+            cv.imwrite(file_output_path, crop_img)
         count+=1
 
 
