@@ -7,8 +7,11 @@ img = cv.imread('C:/Users/Raju/Desktop/15704dsf73130667.jpg',0)
 img = cv.imread('D:/PROJECTS/Python/ruff/-4.jpg',0)
 
 #inputpath="D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/p/"
-inputpath="D:/PROJECTS/Python/ruff2/"
-outputpath="D:/PROJECTS/Python/ruff3/"
+#inputpath="D:/PROJECTS/Python/ruff2/"
+#outputpath="D:/PROJECTS/Python/ruff3/"
+
+inputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/"
+outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/digit/"
 
 count=0
 
