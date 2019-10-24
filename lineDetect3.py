@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 import math
 import os
+from scipy import ndimage
 #import isect_segments_bentley_ottmann.poly_point_isect as bot
 
-inputpath="E:/PROJECT ALL/kaggle/project/found7/"
-outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
+#inputpath="E:/PROJECT ALL/kaggle/project/found7/"
+#outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
 
-#inputpath="D:/PROJECTS/Python/car video/plate/"
-#outputpath="D:/PROJECTS/Python/car video/plate/crop/"
+inputpath="D:/PROJECTS/Python/car video/found7/"
+outputpath="D:/PROJECTS/Python/car video/found7/crop/"
 
 def lineEquationA_B_C(x1,y1,x2,y2):
     m1=(x2-x1)
@@ -268,7 +269,7 @@ for file in os.listdir(inputpath):
         high_threshold = 150
         edges = cv2.Canny(blur_gray, low_threshold, high_threshold)
         #rotate = imutils.rotate_bound(edges, 90)
-        from scipy import ndimage
+        
         
         #rotation angle in degree
         rotated = ndimage.rotate(edges, 90)
@@ -337,7 +338,7 @@ for file in os.listdir(inputpath):
                 
             p1,p2 =line2
             cv2.line(line_image,p1, p2, (255, 255,255), 1)
-            l2points=getTwoIntersectionPoint(p1[0],p1[1],p2[0],p2[1],xx,yy)
+            l2points=getTwoIntersectionPoint(p1[0]-1,p1[1],p2[0]-1,p2[1],xx,yy)
                 
     
                 

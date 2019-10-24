@@ -3,16 +3,15 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import os
 
-#img = cv.imread('C:/Users/Raju/Desktop/15704dsf73130667.jpg',0)
-#img = cv.imread('D:/PROJECTS/Python/ruff/-4.jpg',0)
 
-#inputpath="D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/p/"
-#inputpath="D:/PROJECTS/Python/ruff/"
-#outputpath="D:/PROJECTS/Python/ruff2/"
+#inputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
+#outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/"
+
+inputpath="D:/PROJECTS/Python/car video/found7/crop/"
+outputpath="D:/PROJECTS/Python/car video/found7/crop/number/"
 
 
-inputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
-outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/"
+
 
 
 count=0
