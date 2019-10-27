@@ -4,11 +4,15 @@ from matplotlib import pyplot as plt
 import os
 
 
-#inputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
-#outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/"
+inputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/crop/"
+outputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/crop/number/"
 
-inputpath="D:/PROJECTS/Python/car video/found7/crop/"
-outputpath="D:/PROJECTS/Python/car video/found7/crop/number/"
+
+
+
+#inputpath="D:/PROJECTS/Python/car video/found7/crop/"
+#outputpath="D:/PROJECTS/Python/car video/found7/crop/number/"
+
 
 
 

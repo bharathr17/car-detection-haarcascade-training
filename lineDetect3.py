@@ -5,11 +5,11 @@ import os
 from scipy import ndimage
 #import isect_segments_bentley_ottmann.poly_point_isect as bot
 
-#inputpath="E:/PROJECT ALL/kaggle/project/found7/"
-#outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/"
+inputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/"
+outputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/crop/"
 
-inputpath="D:/PROJECTS/Python/car video/found7/"
-outputpath="D:/PROJECTS/Python/car video/found7/crop/"
+#inputpath="D:/PROJECTS/Python/car video/found7/"
+#outputpath="D:/PROJECTS/Python/car video/found7/crop/"
 
 def lineEquationA_B_C(x1,y1,x2,y2):
     m1=(x2-x1)

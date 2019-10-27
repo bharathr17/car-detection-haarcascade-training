@@ -5,11 +5,11 @@ import os
 from scipy import ndimage
  
 
-#inputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/"
-#outputpath="E:/PROJECT ALL/kaggle/project/found7/crop/number/digit/"
+inputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/crop/number/"
+outputpath="E:/PROJECT ALL/kaggle/project/dataExtract/VID7/crop/number/digits/"
 
-inputpath="D:/PROJECTS/Python/car video/found7/crop/number/"
-outputpath="D:/PROJECTS/Python/car video/found7/crop/number/digits/"
+#inputpath="D:/PROJECTS/Python/car video/found7/crop/number/"
+#outputpath="D:/PROJECTS/Python/car video/found7/crop/number/digits/"
 
 count=0
 def show(img):
@@ -68,7 +68,21 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     # return the resized image
     return resized
     
+def fixedSize(img):
     
+    h,w=img.shape[0:2]
+    if(h<180 and w<180):
+        
+        ww=int((180-w)/2)
+        
+        base_size=180,180 
+        base=np.zeros(base_size,dtype=np.uint8)
+        base[:]=255
+        base[45:h+45,ww:w+ww ]=img # this works
+        plt.imshow(base, cmap='gray') 
+        return base  
+    else:
+        return img
     
     
 for file in os.listdir(inputpath):
@@ -142,7 +156,17 @@ for file in os.listdir(inputpath):
                 roi=crop_img[y:y+h,x:x+w,1]
                 cv2.imwrite('Image_crop'+str(c)+'.jpg', roi)
                 
-                roi = image_resize(roi, height = 50)
+                roi = image_resize(roi, height = 90)
+                roi=fixedSize(roi)
+                roi = image_resize(roi, height = 28)
+                
+                kernel_size = 5
+                blur_gray = cv2.GaussianBlur(roi,(kernel_size, kernel_size),1)
+                kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+                roi = cv2.filter2D(blur_gray, -1, kernel)
+                
+                
+               
                 
                 file_output_path = os.path.join(outputpath+file+'-'+str(count)+"-"+str(c)+'.jpg')
                 directory = os.path.dirname(file_output_path)
@@ -152,8 +176,8 @@ for file in os.listdir(inputpath):
                 except:
                     os.mkdir(directory)
                 
-                
-                cv2.imwrite(file_output_path, roi)
+                if(roi.shape[0]==28 and roi.shape[1]==28 ):
+                    cv2.imwrite(file_output_path, roi)
                 count+=1
                 
                 
@@ -161,7 +185,10 @@ for file in os.listdir(inputpath):
  
             c+=1
  
-        
+
+
+
+    
         # Output to files
 #        roi=img[y:y+h,x:x+w]
 #        cv2.imwrite('Image_crop.jpg', roi)
