@@ -7,6 +7,8 @@ from PIL import Image, ImageEnhance, ImageFilter
 import pytesseract
 from PIL import ImageFont, ImageDraw 
 import numpy as np
+from NumberPlateRecognitionUtils import *
+
  
 def imgToText(im):
 #    im = im.filter(ImageFilter.MedianFilter())
@@ -15,8 +17,7 @@ def imgToText(im):
 #    #im = im.convert('1')
 #    im.save("english_pp.jpg")
     
-#    pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
-    pytesseract.pytesseract.tesseract_cmd ="D:/C-Drive/Tesseract-OCR/tesseract.exe"
+    pytesseract.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
     text = pytesseract.image_to_string(im,lang="ben")
     #text = pytesseract.image_to_string(Image.open("english_pp.jpg"),lang="eng")
     print(text)
@@ -58,22 +59,22 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
  
 
 
-#cascade_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/classifier/cascade.xml'
-#cascade_src_no_plate= 'E:/PROJECT ALL/kaggle/project/car number plate detection haarcascade training raju/classifier/cascade.xml'
+cascade_src = 'E:/PROJECT ALL/kaggle/project/car detection haarcascade training raju/classifier/cascade.xml'
+cascade_src_no_plate= 'E:/PROJECT ALL/kaggle/project/car number plate detection haarcascade training raju/classifier/cascade.xml'
 
-#video_src = "E:/PROJECT ALL/kaggle/project/car video/VID7.mp4" #laptop
-#outputpath='E:/PROJECT ALL/kaggle/project/dataExtract/VID7/'
+video_src = "E:/PROJECT ALL/kaggle/project/car video/VID7.mp4" #laptop
+outputpath='E:/PROJECT ALL/kaggle/project/dataExtract/VID7/'
  
+NPRUtils = NumberPlateRecognitionUtils()
 
-
-
-cascade_src = 'D:/PROJECTS/Python/car-detection-haarcascade-training/classifier/cascade.xml'
-cascade_src_no_plate= 'D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/classifier/cascade.xml'
-
-
- 
-video_src = 'D:/PROJECTS/Python/car video/VID7.mp4'
-outputpath = 'D:/PROJECTS/Python/dataExtract/VID7/'
+#
+#cascade_src = 'D:/PROJECTS/Python/car-detection-haarcascade-training/classifier/cascade.xml'
+#cascade_src_no_plate= 'D:/PROJECTS/Python/car-number-plate-detection-haarcascade-training/classifier/cascade.xml'
+#
+#
+# 
+#video_src = 'D:/PROJECTS/Python/car video/VID_20191002_095248.mp4'
+#outputpath = 'D:/PROJECTS/Python/car video/found7/'
 # 
  
 
@@ -118,7 +119,7 @@ while True:
             Img = Image.fromarray(img)  
             ImgD = ImageDraw.Draw(Img)  
             font = ImageFont.truetype("Nikosh.ttf", 20) 
-            ImgD.text( (x1 ,y1), s, font=font,fill=(255,255,0,255) ) 
+            ImgD.text( (x1 ,y1), s, font=font) 
 #           
         file_output_path = os.path.join(outputpath+  "-"+str(count)+'.jpg')
         directory = os.path.dirname(file_output_path)
